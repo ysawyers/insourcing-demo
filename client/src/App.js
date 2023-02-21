@@ -2,14 +2,19 @@ import React from "react";
 import axios from "axios";
 
 function App() {
-  const [fetchedData, setFetchedData] = React.useState([]);
+  // const [fetchedData, setFetchedData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get("http://127.0.0.1:5000/query-data", {});
-      setFetchedData(data);
-    };
+      const data = await axios.get("http://localhost:5000/data/add", {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
+      console.log(data);
+    };
     fetchData();
   }, []);
 

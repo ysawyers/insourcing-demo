@@ -1,10 +1,18 @@
-const express = require("express");
-const app = express();
+import { Router } from "@ysawyers/insourcing-proxy";
+import axios from "axios";
 
-app.get("/query-data", (req, res) => {
-  res.json("First Contact!");
-});
+const app = new Router(5000, "127.0.0.1");
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+const demoRequestHandler = async (req, res) => {
+  for (let i = 0; i < 1000; i++) {
+    let x = i * 5;
+  }
+  res.end("hey there!");
+};
+
+app.get("/data/add", demoRequestHandler);
+app.get("/data/remove", demoRequestHandler);
+
+app.listenAndServe(() => {
+  console.log(`Server listening on http://127.0.0.1:5000`);
 });
